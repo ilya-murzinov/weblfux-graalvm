@@ -1,0 +1,32 @@
+$ ./build.sh
+Build on Server(pid: 39088, port: 57762)
+[testkt:39088]    classlist:   7,535.92 ms
+[testkt:39088]        (cap):   1,869.03 ms
+[testkt:39088]        setup:  12,795.11 ms
+Warning: class initialization of class org.apache.logging.log4j.core.async.AsyncLoggerConfigDisruptor failed with exception java.lang.NoClassDefFoundError: com/lmax/disruptor/EventFactory. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=org.apache.logging.log4j.core.async.AsyncLoggerConfigDisruptor to explicitly request delayed initialization of this class.
+Warning: class initialization of class org.apache.logging.log4j.core.async.AsyncLoggerContext failed with exception java.lang.NoClassDefFoundError: com/lmax/disruptor/EventTranslatorVararg. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=org.apache.logging.log4j.core.async.AsyncLoggerContext to explicitly request delayed initialization of this class.
+Warning: class initialization of class io.netty.handler.ssl.ReferenceCountedOpenSslContext failed with exception java.lang.NoClassDefFoundError: io/netty/internal/tcnative/SSLPrivateKeyMethod. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=io.netty.handler.ssl.ReferenceCountedOpenSslContext to explicitly request delayed initialization of this class.
+Warning: class initialization of class io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator failed with exception java.lang.NoClassDefFoundError: org/eclipse/jetty/npn/NextProtoNego$Provider. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator to explicitly request delayed initialization of this class.
+Warning: class initialization of class org.apache.logging.log4j.core.config.yaml.YamlConfiguration failed with exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/dataformat/yaml/YAMLFactory. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=org.apache.logging.log4j.core.config.yaml.YamlConfiguration to explicitly request delayed initialization of this class.
+Warning: class initialization of class org.apache.logging.log4j.core.pattern.JAnsiTextRenderer failed with exception java.lang.NoClassDefFoundError: org/fusesource/jansi/AnsiRenderer$Code. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=org.apache.logging.log4j.core.pattern.JAnsiTextRenderer to explicitly request delayed initialization of this class.
+Warning: class initialization of class io.netty.handler.ssl.JettyNpnSslEngine failed with exception java.lang.NoClassDefFoundError: org/eclipse/jetty/npn/NextProtoNego$Provider. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=io.netty.handler.ssl.JettyNpnSslEngine to explicitly request delayed initialization of this class.
+Warning: class initialization of class io.netty.handler.ssl.ReferenceCountedOpenSslEngine failed with exception java.lang.NoClassDefFoundError: io/netty/internal/tcnative/SSL. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=io.netty.handler.ssl.ReferenceCountedOpenSslEngine to explicitly request delayed initialization of this class.
+Warning: class initialization of class io.netty.handler.ssl.ConscryptAlpnSslEngine failed with exception java.lang.NoClassDefFoundError: org/conscrypt/BufferAllocator. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --delay-class-initialization-to-runtime=io.netty.handler.ssl.ConscryptAlpnSslEngine to explicitly request delayed initialization of this class.
+[testkt:39088]     analysis:  53,923.31 ms
+Error: No instances are allowed in the image heap for a class that is initialized or reinitialized at image runtime: javax.net.ssl.SSLContext
+Detailed message:
+Trace: 	object io.netty.handler.ssl.JdkSslClientContext
+	object reactor.netty.tcp.SslProvider
+	method reactor.netty.http.client.HttpClientConnect$MonoHttpConnect.lambda$subscribe$0(HttpClientConnect$HttpClientHandler, Bootstrap, MonoSink)
+Call path from entry point to reactor.netty.http.client.HttpClientConnect$MonoHttpConnect.lambda$subscribe$0(HttpClientConnect$HttpClientHandler, Bootstrap, MonoSink):
+	at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect.lambda$subscribe$0(HttpClientConnect.java:297)
+	at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$$Lambda$787/1641224745.accept(Unknown Source)
+	at reactor.core.publisher.MonoCreate.subscribe(MonoCreate.java:57)
+	at reactor.core.publisher.Mono.block(Mono.java:1493)
+	at TestKt.main(test.kt:43)
+	at TestKt.main(test.kt)
+	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:153)
+	at com.oracle.svm.core.code.IsolateEnterStub.JavaMainWrapper_run_5087f5482cc9a6abc971913ece43acb471d2631b(generated:0)
+
+Error: Use -H:+ReportExceptionStackTraces to print stacktrace of underlying exception
+Error: Image build request failed with exit status 1
